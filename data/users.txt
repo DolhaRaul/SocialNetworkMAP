@@ -1,0 +1,6 @@
+1;Raul;Dolha;Bistrita
+2;Daniel;Sofran;BaiaMare
+3;Mircea;Batran;Rod
+4;Ionut;Demian;Bistrita
+5;Horga;Andrei;Jelna
+6;Matei;Sorin;Bucuresti
