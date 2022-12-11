@@ -5,7 +5,9 @@ import domain.User;
 import domain.validators.EntityIsNull;
 import domain.validators.EntityNotFound;
 import domain.validators.ValidatorException;
+import javafx.collections.ObservableList;
 import repo.Repository;
+import utils.observer.Observable;
 
 import java.sql.SQLException;
 import java.util.HashMap;

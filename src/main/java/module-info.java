@@ -9,4 +9,6 @@ module uifx {
 
     opens uifx to javafx.fxml;
     exports uifx;
+    exports controller;
+    opens controller to javafx.fxml;
 }
