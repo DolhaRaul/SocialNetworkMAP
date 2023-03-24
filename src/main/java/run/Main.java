@@ -1,13 +1,10 @@
 package run;
 
-import domain.Prietenie;
-import domain.User;
-import domain.validators.EntityIsNull;
+import domain.exceptions.EntityIsNull;
 import domain.validators.PrietenieValidator;
 import domain.validators.UserValidator;
-import domain.validators.ValidatorException;
+import domain.exceptions.ValidatorException;
 import repo.PrietenieDBRepository;
-import repo.Repository;
 import repo.UtilizatorDBRepository;
 import service.ForDataBase.ServiceFriendsDB;
 import service.ForDataBase.ServiceUsersDB;
@@ -28,8 +25,8 @@ public class Main {
         final String url = "jdbc:postgresql://localhost:5432/postgres";
         final String username = "postgres";
         final String password = "Rauldolha1";
-        Repository<Integer, User> repoDBUsers = new UtilizatorDBRepository(url, username, password, new UserValidator());
-        Repository<Integer, Prietenie> repoDBFriends = new PrietenieDBRepository(url, username, password, new PrietenieValidator());
+        UtilizatorDBRepository repoDBUsers = new UtilizatorDBRepository(url, username, password, new UserValidator());
+        PrietenieDBRepository repoDBFriends = new PrietenieDBRepository(url, username, password, new PrietenieValidator());
         ServiceUsersDB usersDB_service = new ServiceUsersDB(repoDBUsers, repoDBFriends);
         ServiceFriendsDB friendsDB_service = new ServiceFriendsDB(repoDBUsers, repoDBFriends);
         UserInterface ui = new UserInterface(usersDB_service, friendsDB_service);

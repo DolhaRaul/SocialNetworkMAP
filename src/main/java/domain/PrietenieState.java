@@ -1,2 +1,6 @@
-package domain;public enum PrietenieSate {
+package domain;
+
+public enum PrietenieState
+{
+    Accepted, Pending
 }

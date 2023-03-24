@@ -7,8 +7,10 @@ module uifx {
     requires org.kordamp.bootstrapfx.core;
     requires java.sql;
 
-    opens uifx to javafx.fxml;
     exports uifx;
+    opens uifx to javafx.fxml;
+
+    //exports uifx to javafx.fxml;
     exports controller;
     opens controller to javafx.fxml;
 }

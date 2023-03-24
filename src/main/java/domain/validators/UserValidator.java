@@ -1,6 +1,7 @@
 package domain.validators;
 
 import domain.User;
+import domain.exceptions.ValidatorException;
 
 public class UserValidator implements Validator<User>
 {

@@ -2,7 +2,7 @@ package repo;
 
 import domain.User;
 import domain.validators.Validator;
-import domain.validators.ValidatorException;
+import domain.exceptions.ValidatorException;
 
 import java.sql.*;
 import java.util.List;
@@ -47,6 +47,9 @@ public class UtilizatorDBRepository implements Repository<Integer, User> {
             return users;
         } catch (SQLException e) {
             e.printStackTrace();
+//            e.getMessage();
+//            e.getErrorCode(); acestea sunt difetite metode specifice instantelor clasei SQLEception
+//            e.getCause()
         }
         return users;
     }

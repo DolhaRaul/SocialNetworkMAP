@@ -2,15 +2,18 @@ package service.ForDataBase;
 
 import domain.Prietenie;
 import domain.User;
-import domain.validators.EntityIsNull;
-import domain.validators.EntityNotFound;
-import domain.validators.ValidatorException;
-import javafx.collections.ObservableList;
+import domain.exceptions.EntityIsNull;
+import domain.exceptions.EntityNotFound;
+import domain.exceptions.MyException;
+import domain.exceptions.ValidatorException;
 import repo.Repository;
-import utils.observer.Observable;
 
 import java.sql.SQLException;
 import java.util.HashMap;
+import java.util.List;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 public class ServiceUsersDB
 {
@@ -89,6 +92,27 @@ public class ServiceUsersDB
     public User findOne(int id)
     {
         return this.users_repo.findOne(id);
+    }
+
+    /**
+     * Returnam utilizatorul dorit sau aruncam o exceptie de nu exista
+     * @param nume-String
+     * @param prenume-Stirng
+     * @return Utilizatorul de nume si prenume dorit
+     */
+    public User login(String nume, String prenume) throws MyException {
+        Predicate<User> same_nume = (p)->p.getNume().equals(nume);
+        Predicate<User> same_prenume = (p)->p.getPrenume().equals(prenume);
+        List<User> utilizatori = StreamSupport.stream(this.findAll().spliterator(), false).toList();
+        ///obtinem utilizatorii de nume dorit
+        List<User> utilizator_dorit = utilizatori.stream().filter(same_nume).toList();
+        if(utilizator_dorit.isEmpty())
+            throw new MyException("Numele utilizatorului e invalid!");
+        utilizator_dorit = utilizator_dorit.stream().filter(same_prenume).collect(Collectors.toList());
+        if(utilizator_dorit.isEmpty())
+            throw new MyException("Prenumele uitlizatorului e invalid!");
+        else
+            return utilizator_dorit.get(0);///DACA NU, LISTA TREBUIE FORMATA DINTR UN SINGUR ELEMENT!
     }
     public int size()
     {

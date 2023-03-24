@@ -39,7 +39,7 @@
                   </AnchorPane>
                   <AnchorPane prefHeight="99.0" prefWidth="398.0" style="-fx-font: Verdana;" GridPane.columnIndex="1">
                      <children>
-                        <TextField fx:id="enter_nume" layoutX="18.0" layoutY="11.0" prefHeight="112.0" prefWidth="398.4" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <TextField fx:id="enter_nume" layoutX="18.0" layoutY="11.0" prefHeight="112.0" prefWidth="398.4" text="Dolha" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <padding>
                               <Insets right="20.0" top="2.0" />
                            </padding>
@@ -75,7 +75,7 @@
                   </AnchorPane>
                   <AnchorPane prefHeight="86.0" prefWidth="398.0" GridPane.columnIndex="1">
                      <children>
-                        <TextField fx:id="enter_prenume" layoutX="-2.0" prefHeight="100.0" prefWidth="398.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="-2.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="0.0">
+                        <TextField fx:id="enter_prenume" layoutX="-2.0" prefHeight="100.0" prefWidth="398.0" text="Raul" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="-2.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="0.0">
                            <padding>
                               <Insets bottom="20.0" top="20.0" />
                            </padding>

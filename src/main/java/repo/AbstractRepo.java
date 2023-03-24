@@ -1,9 +1,9 @@
 package repo;
 
 import domain.Entity;
-import domain.validators.EntityIsNull;
+import domain.exceptions.EntityIsNull;
 import domain.validators.Validator;
-import domain.validators.ValidatorException;
+import domain.exceptions.ValidatorException;
 
 import java.util.HashMap;
 import java.util.Map;

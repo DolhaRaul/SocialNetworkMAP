@@ -2,9 +2,9 @@ package service.ForFile;
 
 import domain.Prietenie;
 import domain.User;
-import domain.validators.EntityIsNull;
-import domain.validators.EntityNotFound;
-import domain.validators.ValidatorException;
+import domain.exceptions.EntityIsNull;
+import domain.exceptions.EntityNotFound;
+import domain.exceptions.ValidatorException;
 import repo.PrietenieFileRepository;
 import repo.UserFileRepository;
 

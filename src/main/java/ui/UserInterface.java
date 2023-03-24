@@ -1,8 +1,8 @@
 package ui;
 
-import domain.validators.EntityIsNull;
-import domain.validators.EntityNotFound;
-import domain.validators.ValidatorException;
+import domain.exceptions.EntityIsNull;
+import domain.exceptions.EntityNotFound;
+import domain.exceptions.ValidatorException;
 import service.ForDataBase.ServiceFriendsDB;
 import service.ForDataBase.ServiceUsersDB;
 

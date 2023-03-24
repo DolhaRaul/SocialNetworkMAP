@@ -1,6 +1,6 @@
-package domain.validators;
+package domain.exceptions;
 
-public class EntityNotFound extends Exception
+public class EntityNotFound extends MyException
 {
     /**
      * clasa proprie de exceptie ce mosteneste Exception si ne spune cand am gasit o entitate

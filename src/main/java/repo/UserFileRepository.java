@@ -1,9 +1,9 @@
 package repo;
 
 import domain.User;
-import domain.validators.EntityIsNull;
+import domain.exceptions.EntityIsNull;
 import domain.validators.Validator;
-import domain.validators.ValidatorException;
+import domain.exceptions.ValidatorException;
 
 import java.io.IOException;
 import java.nio.file.Files;

@@ -2,6 +2,8 @@ package run;
 
 import domain.Prietenie;
 import domain.User;
+import domain.exceptions.EntityIsNull;
+import domain.exceptions.ValidatorException;
 import domain.validators.*;
 import repo.*;
 import config.Config;

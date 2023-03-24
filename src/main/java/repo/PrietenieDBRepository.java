@@ -1,11 +1,15 @@
 package repo;
 
 import domain.Prietenie;
-import domain.validators.EntityIsNull;
+import domain.PrietenieState;
+import domain.exceptions.EntityIsNull;
 import domain.validators.Validator;
-import domain.validators.ValidatorException;
+import domain.exceptions.ValidatorException;
 
 import java.sql.*;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.List;
 import java.util.Set;
 import java.util.SortedSet;
@@ -47,7 +51,7 @@ public class PrietenieDBRepository implements Repository<Integer, Prietenie>
     @Override
     public Prietenie save(Prietenie entity) throws IllegalArgumentException, ValidatorException, EntityIsNull
     {
-        String sql = "insert into prietenie(id, id_user1, id_user2) values(?, ?, ?)";
+        String sql = "insert into prietenie(id, id_user1, id_user2, date, time, state) values(?, ?, ?, ?, ?, ?)";
         try
         {
             Connection connection = DriverManager.getConnection(url, username, password);
@@ -55,6 +59,9 @@ public class PrietenieDBRepository implements Repository<Integer, Prietenie>
             ps.setInt(1, entity.getID());
             ps.setInt(2, entity.getId_user1());
             ps.setInt(3, entity.getId_user2());
+            ps.setDate(4, Date.valueOf(entity.getDate().toLocalDate()));
+            ps.setTime(5, Time.valueOf(entity.getDate().toLocalTime()));
+            ps.setString(6, entity.getState().toString());
             Set<Prietenie> distinct_friendships =
                     StreamSupport.stream(findAll().spliterator(), false).collect(Collectors.toSet());
             ///vrem sa obtinem prieteniile distincte
@@ -81,7 +88,7 @@ public class PrietenieDBRepository implements Repository<Integer, Prietenie>
      * @throws SQLException-apare o eroare SQL
      */
     @Override
-    public Prietenie delete(Integer integer) throws EntityIsNull, SQLException {
+    public Prietenie delete(Integer integer) throws EntityIsNull {
         String sql = "DELETE FROM prietenie WHERE ID = ?";
         try
         {
@@ -150,7 +157,10 @@ public class PrietenieDBRepository implements Repository<Integer, Prietenie>
                 Integer id = resultset.getInt("id");
                 Integer id_user1 = resultset.getInt("id_user1");
                 Integer id_user2 = resultset.getInt("id_user2");
-                prietenii.add(new Prietenie(id, id_user1, id_user2));
+                LocalDate date = resultset.getDate("date").toLocalDate();
+                LocalTime timp = resultset.getTime("time").toLocalTime();
+                PrietenieState state = PrietenieState.valueOf(resultset.getString("state"));
+                prietenii.add(new Prietenie(id, id_user1, id_user2, LocalDateTime.of(date, timp), state));
             }
             return prietenii;
         }
@@ -159,6 +169,22 @@ public class PrietenieDBRepository implements Repository<Integer, Prietenie>
             e.printStackTrace();
         }
         return prietenii;
+    }
+
+    public void update(Integer id, PrietenieState state)
+    {
+        String sql = "UPDATE prietenie SET state = ? WHERE id = ?";
+        try {
+            Connection conn = DriverManager.getConnection(url, username, password);
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setString(1, state.toString());
+            ps.setInt(2, id);
+            ps.executeUpdate();
+        }
+        catch(SQLException e)
+        {
+            e.printStackTrace();
+        }
     }
 
     /**

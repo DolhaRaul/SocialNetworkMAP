@@ -1,7 +1,7 @@
 package repo;
 
-import domain.validators.EntityIsNull;
-import domain.validators.ValidatorException;
+import domain.exceptions.EntityIsNull;
+import domain.exceptions.ValidatorException;
 
 import java.sql.SQLException;
 
