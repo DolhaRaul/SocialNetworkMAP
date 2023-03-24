@@ -4,7 +4,7 @@ import domain.User;
 import javafx.collections.ObservableList;
 import utils.observer.Observable;
 
-public class UtilizatorController
+public class HomeController
 {
 
 }
