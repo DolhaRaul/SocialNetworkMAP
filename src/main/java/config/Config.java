@@ -14,8 +14,7 @@ public class Config {
      * clasa Config se va incarca cu datele in package ul "resources"(package ul unde ne aflam acum), cu datele din fisierul
      * "config.properties", deci path ul e "resources/config.properties"
      */
-    public static final URL CONFIG_URL = Config.class.getClassLoader().
-            getResource("config.properties");
+    public static final URL CONFIG_URL = Config.class.getClassLoader().getResource("config.properties");
 
     /**
      * Obtinem proprietatile generale

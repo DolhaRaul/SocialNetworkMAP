@@ -235,6 +235,7 @@ public class ProfileController
             controller.getFriends_service().delete_prietenie(prietenie.getID());
             prietenie = null;
             updateButton();
+            prieteniVizualizati.setAll(controller.getFriends_service().findPrieteni(userVizualizat));
         }
         catch (MyException ex)
         {

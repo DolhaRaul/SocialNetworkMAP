@@ -62,7 +62,8 @@ public class LogInController {
      * observam ca aici nici nu l am mai aduagat ca data membra
      * @throws MyException
      */
-    public void Login() throws MyException {
+    public void Login() throws MyException
+    {
        String nume = enter_nume.getText();
        String prenume = enter_prenume.getText();
        try {

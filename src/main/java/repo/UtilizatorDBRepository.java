@@ -29,7 +29,8 @@ public class UtilizatorDBRepository implements Repository<Integer, User> {
      * @return toti utilizatorii din "tabe", din baza noastar de date
      */
     @Override
-    public Iterable<User> findAll() {
+    public Iterable<User> findAll()
+    {
         SortedSet<User> users = new TreeSet<>((x, y)->{return x.getID() - y.getID();});///pt ca vrem ca inregistrarile sunt distincte
         try (Connection connection = DriverManager.getConnection(url, username, password);
              PreparedStatement statement = connection.prepareStatement("SELECT * FROM users ORDER BY ID");

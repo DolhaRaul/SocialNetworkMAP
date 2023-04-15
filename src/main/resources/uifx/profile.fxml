@@ -12,7 +12,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ProfileController">
    <children>
       <VBox layoutX="121.0" layoutY="45.0" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -97,7 +96,7 @@
                               <Font name="Verdana" size="18.0" />
                            </font>
                         </Button>
-                        <Button fx:id="removeBtn" mnemonicParsing="false" onAction="#prietenieDelete" prefHeight="36.0" prefWidth="242.0" text="Button" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                        <Button fx:id="removeBtn" mnemonicParsing="false" onAction="#prietenieDelete" prefHeight="36.0" prefWidth="242.0" text="Sterge Prieten" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                            <font>
                               <Font name="Verdana" size="18.0" />
                            </font>
