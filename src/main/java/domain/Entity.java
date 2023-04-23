@@ -1,11 +1,20 @@
 package domain;
 
+import java.io.Serial;
 import java.io.Serializable;
 
 public class Entity<ID> implements Serializable
 {
+    @Serial
     private final static long serialVersionUID = 11122L;
     protected ID id;
+
+    /**
+     * constructor implicit(util cand avem nevoie de obiecte "initial goale"
+     */
+    public Entity()
+    {
+    }
 
     /**
      * constructor cu parametrii

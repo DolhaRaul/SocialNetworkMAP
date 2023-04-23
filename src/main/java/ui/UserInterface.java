@@ -3,6 +3,7 @@ package ui;
 import domain.exceptions.EntityIsNull;
 import domain.exceptions.EntityNotFound;
 import domain.exceptions.ValidatorException;
+import repo.MessageDBRepository;
 import service.ForDataBase.ServiceFriendsDB;
 import service.ForDataBase.ServiceUsersDB;
 
@@ -18,15 +19,18 @@ public class UserInterface
     private ServiceUsersDB users;
     private ServiceFriendsDB prietenii;
 
+    private MessageDBRepository mesaje;
+
     /**
      * constructor cu parametrii, unde initiaizam datele membre cu instante de obiecte ServiceUsers, respectiv ServicePrietenii
      * @param users-ServiceUsers
      * @param prietenii-ServicePrietenii
      */
-    public UserInterface(ServiceUsersDB users, ServiceFriendsDB prietenii)
+    public UserInterface(ServiceUsersDB users, ServiceFriendsDB prietenii, MessageDBRepository mesaje)
     {
         this.users = users;
         this.prietenii = prietenii;
+        this.mesaje = mesaje;
     }
     /**
      * Permitem utilizatorului sa introduca un user
@@ -36,6 +40,7 @@ public class UserInterface
         System.out.println("0.Iesire din program");
         System.out.println("au.Afisare useri");
         System.out.println("ap.Afisare prietenii");
+        System.out.println("am.Afisare mesaje");
         System.out.println("1.Adaugare utilizator");
         System.out.println("2.Stergere utilizator");
         System.out.println("3.Adaugare prietenie");
@@ -57,6 +62,7 @@ public class UserInterface
                 {
                     case "au" -> this.show_users();
                     case "ap" -> this.show_prietenii();
+                    case "am" -> this.show_mesaje();
                     case "1" -> this.add_user();
                     case "2" -> this.delete_user();
                     case "3" -> this.add_prietenie();
@@ -159,5 +165,13 @@ public class UserInterface
     public void show_prietenii()
     {
         this.prietenii.findAll().forEach((x)-> System.out.println(x.toString()));
+    }
+
+    /**
+     * Afisam toate mesajele
+     */
+    public void show_mesaje()
+    {
+        this.mesaje.findAll().forEach(x->System.out.println(x.toString()));
     }
 }

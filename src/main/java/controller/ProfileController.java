@@ -231,7 +231,8 @@ public class ProfileController
     }
     public void prietenieDelete()
     {
-        try {
+        try
+        {
             controller.getFriends_service().delete_prietenie(prietenie.getID());
             prietenie = null;
             updateButton();
