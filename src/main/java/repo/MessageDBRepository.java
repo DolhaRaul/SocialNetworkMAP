@@ -1,5 +1,6 @@
 package repo;
 
+import domain.Entity;
 import domain.Message;
 import domain.exceptions.EntityIsNull;
 import domain.exceptions.ValidatorException;
@@ -14,6 +15,7 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public class MessageDBRepository implements Repository<Integer, Message>
@@ -56,7 +58,7 @@ public class MessageDBRepository implements Repository<Integer, Message>
             PreparedStatement ps = conn.prepareStatement(sql)
             )
         {
-            ps.setInt(1, mesaj.getID());
+            ps.setInt(1, GenerateId());///id ul mesajului se va genera automat
             ps.setInt(2, mesaj.getId_sender());
             ps.setInt(3, mesaj.getId_receiver());
             ps.setString(4, mesaj.getContinut());
@@ -74,8 +76,9 @@ public class MessageDBRepository implements Repository<Integer, Message>
     }
 
     @Override
-    public Message delete(Integer integer) throws EntityIsNull, SQLException {
-        String sql = "DELETE  FROM mesaje WHERE ID = ?";
+    public Message delete(Integer integer)
+    {
+        String sql = "DELETE FROM mesaje WHERE ID = ?";
         try(Connection conn = DriverManager.getConnection(url, username, password);
             PreparedStatement ps = conn.prepareStatement(sql)
         )
@@ -147,8 +150,6 @@ public class MessageDBRepository implements Repository<Integer, Message>
                 String continut = resultSet.getString("continut");
                 Date data = resultSet.getDate("date");
                 Time timp =  resultSet.getTime("time");
-                ///OBS!!! CAND CREEM ACEST OBIECT, NU VOM OBTINE DATA CAND A FOST TRIMIS, CI DATA
-                ///DE ACM!!!PENTRU CA SE INITIALIZEAZA DIRECT IN CONSTRUCTOR DATA MEMBRA LOCALDATETIME
                 Message mesaj_dorit = new Message();///avem nevoie de un astfel de constructor, pt
                                         ///a seta id ul(generat automat), data si timpul
                 mesaj_dorit.setID(id);
@@ -169,5 +170,14 @@ public class MessageDBRepository implements Repository<Integer, Message>
     @Override
     public int size() {
         return Utils.toStream(this.findAll()).toList().size();
+    }
+
+    /**
+     * @return id ul mesajului cand se va crea un nou mesaj(id ul
+     * pentru mesaje se va genera automat)
+     */
+    public int GenerateId()
+    {
+        return Utils.toStream(findAll()).map(Entity::getID).reduce(Math::max).orElse(0) + 1;
     }
 }

@@ -29,7 +29,7 @@ public class Utils
         LocalDateTime data_trimitere = now.withDayOfMonth(calendar.get(Calendar.DAY_OF_MONTH)).
                 withMonth(calendar.get(Calendar.MONTH)).withYear(calendar.get(Calendar.YEAR));
         calendar.setTime(timp);///ca sa obtinem detalii legate de timp
-        data_trimitere.withHour(calendar.get(Calendar.HOUR_OF_DAY)).
+        data_trimitere = data_trimitere.withHour(calendar.get(Calendar.HOUR_OF_DAY)).
                 withMinute(calendar.get(Calendar.MINUTE));
         return data_trimitere;
     }

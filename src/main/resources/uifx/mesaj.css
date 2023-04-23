@@ -1,3 +1,13 @@
+.button{
+    -fx-transition: 2s;
+    -fx-border-style:groove;
+    -fx-border:2px solid black;
+    -fx-padding: 10 10 10 10;
+    -fx-margin-left: 2px;
+    -fx-margin-right: 2px;
+    -fx-font-size: 20;
+}
+
 .button:hover{
-    -fx-background-color:green;
+    -fx-background-color:lightgreen;
 }

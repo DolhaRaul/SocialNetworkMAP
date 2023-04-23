@@ -15,9 +15,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="414.0" prefWidth="589.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.HomeController">
+<AnchorPane xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.HomeController">
    <children>
-      <TabPane layoutX="-3.0" prefHeight="414.0" prefWidth="590.0" style="-fx-font-family: Verdana; -fx-font-size: 14;" tabClosingPolicy="UNAVAILABLE">
+      <TabPane layoutX="-3.0" prefHeight="414.4" prefWidth="589.6" style="-fx-font-family: Verdana; -fx-font-size: 14;" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <tabs>
           <Tab text="Persoane">
             <content>
@@ -58,6 +58,7 @@
                                   <TableColumn fx:id="nume_column" editable="false" prefWidth="108.79998624324799" text="Nume" />
                                   <TableColumn fx:id="prenume_column" editable="false" prefWidth="116.00000762939453" text="Prenume" />
                                     <TableColumn fx:id="vizualizare_column" editable="false" prefWidth="116.00000762939453" sortable="false" />
+                                    <TableColumn fx:id="mesaj_column" prefWidth="75.0" text="Mesaje" />
                                 </columns>
                                  <columnResizePolicy>
                                     <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />

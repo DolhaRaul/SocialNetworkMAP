@@ -49,6 +49,8 @@ public class LogInController {
          */
         HomeController controller = fxmlLoader.getController();
         controller.setController(new DataController());
+        ///prin acest setter, ne asiguram ca fereastra("stage ul") va ramane aceeasi, adica nu se va deschide
+        ///intr o noua fereastra)
         controller.setStage(stage);
         controller.setUser(user);
 

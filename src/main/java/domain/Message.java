@@ -7,7 +7,6 @@ import java.util.Date;
 
 public class Message extends Entity<Integer>
 {
-    public static int generated_id = 0;///contor pentru numarul de mesaje
     public int id_sender;
     public int id_receiver;
     String continut;
@@ -19,18 +18,17 @@ public class Message extends Entity<Integer>
      */
     public Message()
     {
-
+        ;
     }
 
     /**
+     * id ul mesajului nu il generam din constructor, ci se va seta automat(prin setteri)
      * @param user1-id ul primului user,cel care trimite mesajul
      * @param user2-id ul celui de al doilea user, cel care primeste mesajul
      * @param text-continutul mesajului
      */
     public Message(int user1, int user2, String text)
     {
-        super(generated_id + 1);
-        generated_id++;
         this.id_sender = user1;
         this.id_receiver = user2;
         this.continut = text;
@@ -155,6 +153,26 @@ public class Message extends Entity<Integer>
      *
      * @return continutul mesajului(aceasta va fi reprezentarea mesajului sub forma de string)
      */
+
+    /**
+     *
+     * @param user-User
+     * @return Verificam daca un anumit user dat ca parametru a trimis un anumit mesaj
+     */
+    public boolean sentByUser(User user)
+    {
+        return this.getId_sender() == user.getID();
+    }
+
+    /**
+     *
+     * @param user-User
+     * @return Un anumit user de un anumit id a primitm esajul respectiv
+     */
+    public boolean receivedByUser(User user)
+    {
+        return this.getId_receiver() == user.getID();
+    }
     @Override
     public String toString()
     {

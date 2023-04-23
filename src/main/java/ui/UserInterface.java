@@ -5,6 +5,7 @@ import domain.exceptions.EntityNotFound;
 import domain.exceptions.ValidatorException;
 import repo.MessageDBRepository;
 import service.ForDataBase.ServiceFriendsDB;
+import service.ForDataBase.ServiceMessagesDB;
 import service.ForDataBase.ServiceUsersDB;
 
 import java.sql.SQLException;
@@ -19,14 +20,14 @@ public class UserInterface
     private ServiceUsersDB users;
     private ServiceFriendsDB prietenii;
 
-    private MessageDBRepository mesaje;
+    private ServiceMessagesDB mesaje;
 
     /**
      * constructor cu parametrii, unde initiaizam datele membre cu instante de obiecte ServiceUsers, respectiv ServicePrietenii
      * @param users-ServiceUsers
      * @param prietenii-ServicePrietenii
      */
-    public UserInterface(ServiceUsersDB users, ServiceFriendsDB prietenii, MessageDBRepository mesaje)
+    public UserInterface(ServiceUsersDB users, ServiceFriendsDB prietenii, ServiceMessagesDB mesaje)
     {
         this.users = users;
         this.prietenii = prietenii;

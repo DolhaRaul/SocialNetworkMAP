@@ -17,8 +17,8 @@ import java.util.stream.StreamSupport;
 
 public class ServiceFriendsDB
 {
-    UtilizatorDBRepository users_repo;
-    PrietenieDBRepository prietenii_repo;
+    private final UtilizatorDBRepository users_repo;
+    private final PrietenieDBRepository prietenii_repo;
 
     /**
      * constructor cu parametrii, in care intializam datele membre cu instante de tipul UserFileRepository, respectiv
@@ -68,6 +68,7 @@ public class ServiceFriendsDB
          */
         Integer id = generateId();
         Prietenie prietenie = this.add_prietenie(id, from.getID(), to.getID());
+        ///implicit state ul prieteniei e Accepted
         prietenie.setState(PrietenieState.Pending);
         this.update_prietenie(id, PrietenieState.Pending);
         return prietenie;

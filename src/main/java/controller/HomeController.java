@@ -14,6 +14,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
@@ -26,6 +27,7 @@ import utils.Utils;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.StreamSupport;
 
 public class HomeController
@@ -67,6 +69,9 @@ public class HomeController
 
     @FXML
     TableColumn<User, Button> vizualizare_column;
+
+    @FXML
+    TableColumn<User, Button> mesaj_column;
 
     @FXML
     Button searchBtn;
@@ -131,6 +136,9 @@ public class HomeController
         ProfileController controller = fxmlLoader.getController();
         //evident, lucram cu acelasi DataController(unde sunt datele modificate recent)
         controller.setController(this.controller);
+        /*cand vizualizam pagina de profil a cuiva, VREM sa o vizualizam intr o noua fereastra(ca sa o putem
+        inchide si sa ne intoarcem inapoi), pentru ca daca e in aceeasi fereastra, nu ne mai putem intoarce
+        inapoi dupa ce am vizualizat profilul*/
         Stage stage = new Stage();
         controller.setStage(stage);
         controller.setUserVizualizat(userVizualizat);
@@ -138,6 +146,22 @@ public class HomeController
 
         stage.setTitle(userVizualizat.getNume()+"'s Profile");
         stage.setScene(profileScene);
+        stage.show();
+    }
+
+    private void onSendingMessage(User userVizualizat) throws IOException
+    {
+        FXMLLoader fxmlLoader = new FXMLLoader(LogInApplication.class.getResource("mesaj.fxml"));
+        ///incarcam continutul paginii
+        Scene scene = new Scene(fxmlLoader.load());
+        MessageController controller = fxmlLoader.getController();///fiecare pagina "html" are un controller asoc
+        Stage stage = new Stage();
+        controller.setStage(stage);///fereastra in care trimitem msaje
+        stage.setTitle("Trimite mesaj lui " + userVizualizat.getNume() + " " + userVizualizat.getPrenume() + "!");
+        stage.setScene(scene);
+        controller.setController(this.controller);
+        controller.setUser_curent(this.user);
+        controller.setUser_vizualizat(userVizualizat);
         stage.show();
     }
 
@@ -186,7 +210,30 @@ public class HomeController
                 }
             };
         });
-       /// usersTable.setItems(useriList);
+        ////NU UITA SA SPECIFICI ACTIUNEA CE ARE LOC CAND SE TRIMITE UN MESAJ!!!
+        mesaj_column.setCellValueFactory(param -> {
+            return new ObservableValueBase<Button>() {
+                @Override
+                public Button getValue() {
+                    Button send_msg = new Button("Send message");
+                    send_msg.setStyle("-fx-border-style: outset; -fx-font-family: Verdana; -fx-font-size: 14");
+                    send_msg.setStyle("border:10 px solid black");
+                    send_msg.setOnAction(ev -> {
+                        try{
+                            ///pe fiecare linie din TableView, AVEM FE DAPT USERII!!! Acestia se obtin prin
+                            ///metoda param.getValue() (pentru linia respectiva); prin metodele setCelValue...
+                            ///specificam de fapt cum vor fi "prezentati, afisati" acesti useri
+                            onSendingMessage(param.getValue());///
+                        }
+                        catch (IOException e)
+                        {
+                            e.printStackTrace();
+                        }
+                    });
+                    return send_msg;
+                }
+            };
+        });
     }
 
     private void initialize_cereri()
