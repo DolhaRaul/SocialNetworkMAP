@@ -108,7 +108,7 @@
                   <Insets bottom="5.0" top="5.0" />
                </VBox.margin>
             </GridPane>
-            <TableView fx:id="tablePrieteni" prefHeight="222.0" prefWidth="600.0">
+            <TableView fx:id="tablePrieteni" prefHeight="269.0" prefWidth="600.0">
               <columns>
                 <TableColumn fx:id="numeColumn" prefWidth="75.0" text="Nume" />
                   <TableColumn fx:id="prenumeColumn" prefWidth="75.0" text="Prenume" />
